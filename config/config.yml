@@ -1,0 +1,26 @@
+sensors:
+  windVane:
+    channel: 0
+  windSpeed:
+    radius_in: 3.54331
+    wind_interval: 5
+    button: 5
+  rainBucket:
+    button: 6
+    rain_per_trip: 0.011
+  bme:
+    port: 1
+    address: 0x77
+gcp:
+  project_id: 'data-engineering-showcase'
+  gcp_location: 'us-central1'
+  registry_id: 'lime_lake_weather_station'
+  device_id: 'lime_lake_weather_pi'
+  algorithm: 'ES256'
+  private_key_file: '/home/pi/.ssh/ec_private.pem'
+  ca_certs: '/home/pi/.ssh/roots.pem'
+  mqtt_bridge_hostname: 'mqtt.googleapis.com'
+  mqtt_bridge_port: 8883
+  jwt_expires_minutes: 60
+  token_life: 60
+  sub_topic: 'events'
