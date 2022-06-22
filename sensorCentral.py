@@ -107,21 +107,24 @@ class windVane:
 
 class bme:
     def __init__(self):
-        address = get_config()["sensors"]["bme"]["address"]
-        bus = smbus2.SMBus(get_config()["sensors"]["bme"]["port"])
+        self.address = get_config()["sensors"]["bme"]["address"]
+        self.bus = smbus2.SMBus(get_config()["sensors"]["bme"]["port"])
 
-        bme280.load_calibration_params(bus,address)
-        self.bme_data = bme280.sample(bus,address)
+        bme280.load_calibration_params(self.bus, self.address)
+        
 
     def get_temp(self):
+        bme_data = bme280.sample(self.bus, self.address)
         temp_factor = (9/5.0)
-        return ((self.bme_data.temperature * temp_factor) + 32)
+        return ((bme_data.temperature * temp_factor) + 32)
 
     def get_pressure(self):
-        return self.bme_data.pressure
+        bme_data = bme280.sample(self.bus, self.address)
+        return bme_data.pressure
 
     def get_humidity(self):
-        return self.bme_data.humidity
+        bme_data = bme280.sample(self.bus, self.address)
+        return bme_data.humidity
 
 
 class rainBucket:

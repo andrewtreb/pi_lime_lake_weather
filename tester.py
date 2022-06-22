@@ -6,16 +6,12 @@ import json
 import pandas as pd
 import pathlib
 
-
-
 sensors = sensorCentral()
 pd.set_option('display.max_columns', None)
-collection = database()
 finalData = pd.DataFrame()
 
-
 while True:
-    data = sensors.get_data(300)
+    data = sensors.get_data(1)
 
     data_pd = pd.DataFrame([data])
 
@@ -30,4 +26,4 @@ while True:
     #file_test = pathlib.Path(filename)
     #file_test.touch(exist_ok=True)
 
-    collection.insert_weatherData(data_pd)
+    print(data_pd)
