@@ -30,4 +30,6 @@ while True:
     #file_test = pathlib.Path(filename)
     #file_test.touch(exist_ok=True)
 
+    print("Exporting Data to mongo DB:")
+    print(data_pd)
     collection.insert_weatherData(data_pd)
